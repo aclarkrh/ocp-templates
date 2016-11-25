@@ -6,104 +6,10 @@
 		<profile>
 		  <id>default-profile</id>
 		  <repositories>
-			  <repository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>bp-twb-maven-release</id>
-				  <name>bp-twb-maven-release</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/bp-twb-maven-release-local</url>
-				</repository>
-				<repository>
-				  <snapshots />
-				  <id>bp-twb-maven-snapshot</id>
-				  <name>bp-twb-maven-snapshot</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/bp-twb-maven-snapshot-local</url>
-				</repository>
-				<repository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>ext-twb-bin-release-local</id>
-				  <name>ext-twb-bin-release-local</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/ext-twb-bin-release-local</url>
-				</repository>
-				<repository>
-				  <snapshots/>
-				  <id>ext-twb-bin-snapshot-local</id>
-				  <name>ext-twb-bin-snapshot-local</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/ext-twb-bin-snapshot-local</url>
-				</repository>
-						  <repository>
-				  <snapshots/>
-				  <id>jboss-cache</id>
-				  <name>jboss-cache</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/jboss-cache</url>
-				</repository>
-				<repository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>libs-release</id>
-				  <name>libs-release</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/libs-release</url>
-				</repository>
-				<repository>
-				  <snapshots />
-				 <id>libs-snapshot</id>
-				  <name>libs-snapshot</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/libs-snapshot</url>
-				</repository>
+			  
 			</repositories>
 			<pluginRepositories>
-			  <pluginRepository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>bp-twb-maven-release</id>
-				  <name>bp-twb-maven-release</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/bp-twb-maven-release-local</url>
-				</pluginRepository>
-				<pluginRepository>
-				  <snapshots />
-				  <id>bp-twb-maven-snapshot</id>
-				  <name>bp-twb-maven-snapshot</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/bp-twb-maven-snapshot-local</url>
-				</pluginRepository>
-				<pluginRepository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>ext-twb-bin-release-local</id>
-				  <name>ext-twb-bin-release-local</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/ext-twb-bin-release-local</url>
-				</pluginRepository>
-				<pluginRepository>
-				  <snapshots/>
-				  <id>ext-twb-bin-snapshot-local</id>
-				  <name>ext-twb-bin-snapshot-local</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/ext-twb-bin-snapshot-local</url>
-				</pluginRepository>
-						  <pluginRepository>
-				  <snapshots/>
-				  <id>jboss-cache</id>
-				  <name>jboss-cache</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/jboss-cache</url>
-				</pluginRepository>
-				<pluginRepository>
-				  <snapshots>
-					<enabled>false</enabled>
-				  </snapshots>
-				  <id>libs-release</id>
-				  <name>libs-release</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/libs-release</url>
-				</pluginRepository>
-				<pluginRepository>
-				  <snapshots />
-				 <id>libs-snapshot</id>
-				  <name>libs-snapshot</name>
-				  <url>http://dml.bpweb.bp.com:8088/artifactory/libs-snapshot</url>
-				</pluginRepository>
+			  
 			</pluginRepositories>
 		</profile>
 	  </profiles>
