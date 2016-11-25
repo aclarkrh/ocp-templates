@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project ...>
+
+  ...
+
+	<properties>
+
+    ...
+
+		<!-- Used to overide source dir for Kubernetes template generation -->
+		<src.dir>src/main/java</src.dir>
+
+	</properties>
+
+	<profiles>
+
+    ...
+
+		<profile>
+			<id>kube-dsl</id>
+			<properties>
+
+        <src.dir>src/config/java</src.dir>
+
+        <maven.test.skip>true</maven.test.skip>
+
+		    <fabric8.version>2.2.136</fabric8.version>
+        <fabric8.useBuildConfig>true</fabric8.useBuildConfig>
+        <fabric8.useDeploymentConfig>true</fabric8.useDeploymentConfig>
+
+        <fabric8.parameter.GIT_URI.description>URL to the Git repository</fabric8.parameter.GIT_URI.description>
+        <fabric8.parameter.GIT_URI.value>___INSERT_GIT_REPO_URL___</fabric8.parameter.GIT_URI.value>
+
+        <!-- This value is normally populated at build time by the Jenkins job -->
+		    <fabric8.parameter.SOURCE_REPOSITORY_REF.description>Git branch/tag references</fabric8.parameter.SOURCE_REPOSITORY_REF.description>
+		    <fabric8.parameter.SOURCE_REPOSITORY_REF.value></fabric8.parameter.SOURCE_REPOSITORY_REF.value>
+
+		    <fabric8.parameter.CONTEXT_DIR.description>The path within the repository where the application can be found.</fabric8.parameter.CONTEXT_DIR.description>
+        <fabric8.parameter.CONTEXT_DIR.value></fabric8.parameter.CONTEXT_DIR.value>
+
+        <fabric8.parameter.SOURCE_SECRET.description>The secret containing the git credentials.</fabric8.parameter.SOURCE_SECRET.description>
+        <fabric8.parameter.SOURCE_SECRET.value>___INSERT_GIT_SECRET___</fabric8.parameter.SOURCE_SECRET.value>
+
+        <fabric8.parameter.WAR_FILE_URL.description>The URL to retirve the application WAR file from.</fabric8.parameter.WAR_FILE_URL.description>
+        <fabric8.parameter.WAR_FILE_URL.value>___INSERT_MAVEN_REPO_BASE___${project.artifactId}/${project.version}/${project.artifactId}-${project.version}.war</fabric8.parameter.WAR_FILE_URL.value>
+
+        <fabric8.parameter.APPLICATION_NAME.description>The name for the application.</fabric8.parameter.APPLICATION_NAME.description>
+        <fabric8.parameter.APPLICATION_NAME.value>${project.artifactId}</fabric8.parameter.APPLICATION_NAME.value>
+
+        <fabric8.parameter.APPLICATION_VERSION.description>The version of the application.</fabric8.parameter.APPLICATION_VERSION.description>
+        <fabric8.parameter.APPLICATION_VERSION.value>${project.version}</fabric8.parameter.APPLICATION_VERSION.value>
+
+        <fabric8.parameter.HOSTNAME_HTTP.description>Custom hostname for http service route. Leave blank for default hostname, e.g.: &lt;application-name&gt;-&lt;project&gt;.&lt;default-domain-suffix&gt;</fabric8.parameter.HOSTNAME_HTTP.description>
+        <fabric8.parameter.HOSTNAME_HTTP.value></fabric8.parameter.HOSTNAME_HTTP.value>
+
+        <fabric8.parameter.HOSTNAME_HTTPS.description>Custom hostname for https service route. Leave blank for default hostname, e.g.: secure-&lt;application-name&gt;-&lt;project&gt;.&lt;default-domain-suffix&gt;</fabric8.parameter.HOSTNAME_HTTPS.description>
+        <fabric8.parameter.HOSTNAME_HTTPS.value></fabric8.parameter.HOSTNAME_HTTPS.value>
+
+        <fabric8.parameter.XPAAS_IS_PULL_NAMESPACE.description>Project where the xPaaS ImageStreams and BuildConfigs are installed.</fabric8.parameter.XPAAS_IS_PULL_NAMESPACE.description>
+        <fabric8.parameter.XPAAS_IS_PULL_NAMESPACE.value>openshift</fabric8.parameter.XPAAS_IS_PULL_NAMESPACE.value>
+
+        <fabric8.parameter.XPAAS_IS_NAME.description>The xPaaS Image name.</fabric8.parameter.XPAAS_IS_NAME.description>
+        <fabric8.parameter.XPAAS_IS_NAME.value>jboss-eap70-openshift</fabric8.parameter.XPAAS_IS_NAME.value>
+
+        <fabric8.parameter.XPAAS_IS_TAG.description>Tag that the xPaaS ImageStream should be pushed to</fabric8.parameter.XPAAS_IS_TAG.description>
+        <fabric8.parameter.XPAAS_IS_TAG.value>latest</fabric8.parameter.XPAAS_IS_TAG.value>
+
+        <fabric8.parameter.APP_IS_PULL_NAMESPACE.description>Project where the application ImageStreams and BuildConfigs are installed.</fabric8.parameter.APP_IS_PULL_NAMESPACE.description>
+        <fabric8.parameter.APP_IS_PULL_NAMESPACE.value>___INSERT_OCP_BUILD_NAMESPACE___</fabric8.parameter.APP_IS_PULL_NAMESPACE.value>
+
+        <fabric8.parameter.PERSISTENT_VOLUME_CLAIM_SIZE.description>The size of the persistent volume being requested</fabric8.parameter.PERSISTENT_VOLUME_CLAIM_SIZE.description>
+        <fabric8.parameter.PERSISTENT_VOLUME_CLAIM_SIZE.value>500Mi</fabric8.parameter.PERSISTENT_VOLUME_CLAIM_SIZE.value>
+
+        <fabric8.parameter.PERSISTENT_VOLUME_MOUNT_PATH.description>Mount where application binaries are stored</fabric8.parameter.PERSISTENT_VOLUME_MOUNT_PATH.description>
+        <fabric8.parameter.PERSISTENT_VOLUME_MOUNT_PATH.value>___INSERT_PVC_MOUNT_PATH___</fabric8.parameter.PERSISTENT_VOLUME_MOUNT_PATH.value>
+
+        <fabric8.parameter.READINESS_PROBE_PATH.description>The path to probe for the HTTP readiness check</fabric8.parameter.READINESS_PROBE_PATH.description>
+        <fabric8.parameter.READINESS_PROBE_PATH.value>___INSERT_READINESS_PROBE_URL_PATH___</fabric8.parameter.READINESS_PROBE_PATH.value>
+
+        <fabric8.parameter.LIVENESS_PROBE_PATH.description>The path to probe for the HTTP liveness check</fabric8.parameter.LIVENESS_PROBE_PATH.description>
+        <fabric8.parameter.LIVENESS_PROBE_PATH.value>/rest/list-apps</fabric8.parameter.LIVENESS_PROBE_PATH.value>
+
+        <fabric8.parameter.CPU_REQUEST.description>The requested CPU resource for a container</fabric8.parameter.CPU_REQUEST.description>
+        <fabric8.parameter.CPU_REQUEST.value>200m</fabric8.parameter.CPU_REQUEST.value>
+
+        <fabric8.parameter.MEM_REQUEST.description>The requested memory resource for a container</fabric8.parameter.MEM_REQUEST.description>
+        <fabric8.parameter.MEM_REQUEST.value>512Mi</fabric8.parameter.MEM_REQUEST.value>
+
+        <fabric8.parameter.CPU_LIMIT.description>The CPU resource limit for a container</fabric8.parameter.CPU_LIMIT.description>
+        <fabric8.parameter.CPU_LIMIT.value>800m</fabric8.parameter.CPU_LIMIT.value>
+
+        <fabric8.parameter.MEM_LIMIT.description>The memory resource limit for a container</fabric8.parameter.MEM_LIMIT.description>
+        <fabric8.parameter.MEM_LIMIT.value>1024Mi</fabric8.parameter.MEM_LIMIT.value>
+
+		  </properties>
+    <dependencies>
+        <!--these dependencies are only used for KubeDSL generation-->
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-generator</artifactId>
+            <version>${fabric8.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.7</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+    	<finalName>${project.artifactId}</finalName>
+        <resources>
+          <resource>
+            <directory>src/config/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>fabric8-maven-plugin</artifactId>
+            <version>${fabric8.version}</version>
+            <executions>
+              <execution>
+                <id>json</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>json</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>attach</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>attach</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+      				<execution>
+              <id>fix-values</id>
+              <phase>initialize</phase>
+      					<goals>
+      						<goal>execute</goal>
+      					</goals>
+      					<configuration>
+      						<scripts>
+      							<!-- OpenShift doesn't like certain object names: -->
+      							<!-- When version contains uppercase SNAPSHOT OCP complains, so convert to lower case -->
+      							<!-- When version contains '.' if fails, so convert to '-' -->
+      							<!-- *** WORKAROUND - REQUIRES PROPER SOLUTION *** Service names can't be greater than 24 characters, so drop '-snapshot' -->
+      							<script>
+      								<![CDATA[
+      									import org.apache.commons.lang.StringUtils
+
+      									project.properties["fabric8.parameter.APPLICATION_VERSION.value"] = StringUtils.lowerCase(project.properties["fabric8.parameter.APPLICATION_VERSION.value"])
+      									project.properties["fabric8.parameter.APPLICATION_VERSION.value"] = StringUtils.replace(project.properties["fabric8.parameter.APPLICATION_VERSION.value"], ".", "-")
+      									project.properties["fabric8.parameter.APPLICATION_VERSION.value"] = StringUtils.replace(project.properties["fabric8.parameter.APPLICATION_VERSION.value"], "-snapshot", "")
+
+      									if(StringUtils.contains(project.properties["fabric8.parameter.WAR_FILE_URL.value"], "SNAPSHOT"))
+      										project.properties["fabric8.parameter.WAR_FILE_URL.value"] = StringUtils.replace(project.properties["fabric8.parameter.WAR_FILE_URL.value"], "release", "snapshot")
+      								]]>
+      							</script>
+      						</scripts>
+      					</configuration>
+      				</execution>
+              <execution>
+              <id>split-build-run</id>
+              <phase>compile</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                <properties>
+                  <property>
+                    <name>templateName</name>
+                    <value>${project.artifactId}-${project.version}</value>
+                  </property>
+                </properties>
+                <scripts>
+                  <script>file:///${project.basedir}/src/config/resources/split-templates.groovy</script>
+                </scripts>
+                </configuration>
+              </execution>
+            </executions>
+
+            <dependencies>
+              <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>2.4.7</version>
+                <scope>runtime</scope>
+              </dependency>
+            </dependencies>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>1.9.1</version>
+            <executions>
+              <execution>
+                <id>attach-artifacts</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>attach-artifact</goal>
+                </goals>
+                <configuration>
+                  <artifacts>
+                    <artifact>
+                      <file>target/classes/kubernetes-build.json</file>
+                      <type>json</type>
+                      <classifier>kubernetes-build</classifier>
+                    </artifact>
+                    <artifact>
+                      <file>target/classes/kubernetes-run.json</file>
+                      <type>json</type>
+                      <classifier>kubernetes-run</classifier>
+                    </artifact>
+                  </artifacts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+	    </build>
+		</profile>
+	</profiles>
+
+  ...
+
+	<build>
+
+    ...
+
+		<sourceDirectory>${src.dir}</sourceDirectory>
+
+    ...
+
+	</build>
+
+</project>
